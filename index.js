@@ -1,15 +1,30 @@
-const bill = document.querySelector("#amount");
-const tip = document.querySelector('#percentage');
-const cal = document.getElementById("calc");
-const totalSpan = document.getElementById("total");
+const cls = document.querySelector('#celsius');
+const fah = document.querySelector('#fahrenheit');
+const kel = document.querySelector('#kelvin');
 
-function calculateTotal(){
-  const billValue = bill.value;
-  const tipValue = tip.value;
-  const total = billValue * (1 + tipValue/100);
-  totalSpan.innerText = total.toFixed(2);
+function calcTemp(event){
+  const currValue = +event.target.value;
+
+  switch(event.target.name){
+    case "celsius":
+      fah.value = ((1.8 * currValue) + 32).toFixed(2);
+      kel.value = (currValue + 273.32).toFixed(2);
+      break;s
+
+    case "fahrenheit":
+      cls.value = ((currValue-32) / 1.8).toFixed(2);
+      kel.value = (((currValue-32) / 1.8) + 273.32).toFixed(2);
+      break;
+
+
+    case "kelvin":
+      cls.value = (currValue - 273.32).toFixed(2);
+      fah.value = ((currValue - 273.32) * 1.8 + 32).toFixed(2);
+      break;
+    default:
+      break;
+  }
+
+
+
 }
-
-cal.addEventListener("click",calculateTotal);
-
-
